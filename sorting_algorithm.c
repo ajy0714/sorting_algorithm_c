@@ -114,14 +114,13 @@ int partition(int ran_num5[],int p,int r)
 	i=p-1;//p는 정렬할 배열의 맨 앞 부분, i는 기준보다 작은 값들 중 정렬된 마지막 값의 번호, j는 커서 
 	for(j=p;j<r;j++)
 	{
-		if((ran_num5[j]<=base)&&(j!=0))
+		if(ran_num5[j]<=base)//&&(j!=0))
 		{
 			temp=ran_num5[++i];
 			ran_num5[i]=ran_num5[j];
 			ran_num5[j]=temp;
 		}
 	}
-
 	temp=ran_num5[i+1];
 	ran_num5[i+1]=ran_num5[r];
 	ran_num5[r]=temp;
@@ -196,7 +195,7 @@ int main(void)
 	start=clock();
 	quick_sort(ran_num5,0,num-1);//퀵 정렬
 	end=clock();
-	printf("\n퀵 정렬 : ");		print_array(ran_num5);
+	printf("\n퀵  정렬 : ");	print_array(ran_num5);
 	printf("소요시간 : %lf",(double)end-start);
 	free(ran_num5);
 	//	heap_sort(ran_num,num);//힙 정렬*/
