@@ -74,12 +74,12 @@ void merge_sort(int ran_num4[], int p,int r)
 	}
 }
 
-void merge(int ran_num4[],int p,int q,int r)//      https://gist.github.com/yujuwon/5810996#file-gistfile1-c 참고해서 할 
+void merge(int ran_num4[],int p,int q,int r)
 {
 	int i=p;int j=q+1;
-	int m; int k=p;
+	int m; int k=0;
 	int temp2[ITEMSIZE];
-	while(i<=q && j<=r)
+	while((i<=q) && (j<=r))
 	{
 		if(ran_num4[i]<=ran_num4[j])
 			temp2[k++]=ran_num4[i++];	
@@ -87,27 +87,14 @@ void merge(int ran_num4[],int p,int q,int r)//      https://gist.github.com/yuju
 			temp2[k++]=ran_num4[j++];
 	}
 
-	if(i>q)//배열의 오른쪽이 남아있는 경우
+	while(j<=r)
+		temp2[k++]=ran_num4[j++];
+	while(i<=q)
+		temp2[k++]=ran_num4[i++];
 
-	{
-		for(m=j;m<=r;m++,k++)	
-		{
-			temp2[k]=ran_num4[m];
-		}		
-
-	}
-	else
-	{
-		for(m=i;m<=q;m++,k++)
-		{
-			temp2[k]=ran_num4[m];
-		}
-	}
-
-	for(m=0;m<=r;m++)
-	{
-		ran_num4[m]=temp2[m];
-	}
+	i=p;k=0;
+	while(i<=r)
+		ran_num4[i++]=temp2[k++];
 }
 
 void quick_sort(int ran_num5[],int p,int r)//퀵 정렬은 4부분으로 나뉨. 기준보다 작은, 기준보다 큰, 아직 정렬되지 않은, 기준
