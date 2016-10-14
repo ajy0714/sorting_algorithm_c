@@ -126,10 +126,18 @@ int partition(int ran_num5[],int p,int r)
 	ran_num5[r]=temp;
 	return i+1;
 }
-/*   void heap_sort()
-     {
-     }
- */
+
+void heap_sort(int ran_num6[],n)
+{
+}
+
+void buid_heap(int ran_num[],n)
+{
+}
+
+void heapify()
+{
+}
 
 
 void print_array(int array[])//정렬이 잘 되었다고 확인하는 용도
@@ -198,6 +206,17 @@ int main(void)
 	printf("\n퀵  정렬 : ");	print_array(ran_num5);
 	printf("소요시간 : %lf",(double)end-start);
 	free(ran_num5);
-	//	heap_sort(ran_num,num);//힙 정렬*/
+	
+
+	int *ran_num6=(int*)malloc(sizeof(int)*num);
+	memcpy(ran_num6,ran_num,sizeof(ran_num)*num);
+	start=clock();
+	heap_sort(ran_num6,num-1);//힙 정렬
+	end=clock();
+	printf("\n힙   정렬 : ");	print_array(ran_num6);
+	printf("소요시간 : %lf",(double)end-start);
+	free(ran_num6);
+
+	free(ran_num);
 	return 0;
 }
