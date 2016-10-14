@@ -124,7 +124,7 @@ void quick_sort(int ran_num5[],int p,int r)//퀵 정렬은 4부분으로 나뉨.
 int partition(int ran_num5[],int p,int r)
 {
 	int base=ran_num5[r];//base는 기준을 의미함. 배열의 맨 마지막
-	i=p;//p는 정렬할 배열의 맨 앞 부분, i는 기준보다 작은 값들 중 정렬된 마지막 값의 번호, j는 커서 
+	i=p-1;//p는 정렬할 배열의 맨 앞 부분, i는 기준보다 작은 값들 중 정렬된 마지막 값의 번호, j는 커서 
 	for(j=p;j<r;j++)
 	{
 		if((ran_num5[j]<=base)&&(j!=0))
