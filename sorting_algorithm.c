@@ -110,31 +110,40 @@ void merge(int ran_num4[],int p,int q,int r)//      https://gist.github.com/yuju
 	}
 }
 
-void quick_sort(int ran_num4[],int p,int r)//퀵 정렬은 4부분으로 나뉨. 기준보다 작은, 기준보다 큰, 아직 정렬되지 않은, 기준
+void quick_sort(int ran_num5[],int p,int r)//퀵 정렬은 4부분으로 나뉨. 기준보다 작은, 기준보다 큰, 아직 정렬되지 않은, 기준
 {
+	int q;
 	if(p<r)
 	{
-		q=partition(ran_num4,p,r);
-		quick_sort(ran_num4,p,q-1);
-		quick_sort(ran_num4,q+1,r);
+		q=partition(ran_num5,p,r);
+		quick_sort(ran_num5,p,q-1);
+		quick_sort(ran_num5,q+1,r);
 	}
 }
-/*
-void partition(int ran_num4,int p,int r)
+
+int partition(int ran_num5[],int p,int r)
 {
-	int base=ran_num4[r];//base는 기준을 의미함. 배열의 맨 마지막
-	i=p-1;//p는 정렬할 배열의 맨 앞 부분, i는 기준보다 작은 값들 중 정렬된 마지막 값의 번호, j는 커서,  
+	int base=ran_num5[r];//base는 기준을 의미함. 배열의 맨 마지막
+	i=p;//p는 정렬할 배열의 맨 앞 부분, i는 기준보다 작은 값들 중 정렬된 마지막 값의 번호, j는 커서 
 	for(j=p;j<r;j++)
 	{
-		if(ran_num4[j])		
+		if((ran_num5[j]<=base)&&(j!=0))
+		{
+			temp=ran_num5[++i];
+			ran_num5[i]=ran_num5[j];
+			ran_num5[j]=temp;
+		}
 	}
 
+	temp=ran_num5[i+1];
+	ran_num5[i+1]=ran_num5[r];
+	ran_num5[r]=temp;
 	return i+1;
-}*/
+}
 /*   void heap_sort()
-   {
+     {
 
-   }
+     }
  */
 
 
@@ -196,14 +205,14 @@ int main(void)
 	printf("소요시간 : %lf",(double)end-start);
 	free(ran_num4);
 
-/*	int *ran_num5=(int*)malloc(sizeof(int)*num);
+	int *ran_num5=(int*)malloc(sizeof(int)*num);
 	memcpy(ran_num5,ran_num,sizeof(ran_num)*num);
 	start=clock();
 	quick_sort(ran_num5,0,num-1);//퀵 정렬
 	end=clock();
-	printf("\n퀵 정렬 : ");		printf_array(ran_num5);
+	printf("\n퀵 정렬 : ");		print_array(ran_num5);
 	printf("소요시간 : %lf",(double)end-start);
-	free(ran_num5);*/
+	free(ran_num5);
 	//	heap_sort(ran_num,num);//힙 정렬*/
 	return 0;
 }
