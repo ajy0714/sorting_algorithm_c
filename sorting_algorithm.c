@@ -127,24 +127,9 @@ int partition(int ran_num5[],int p,int r)
 	return i+1;
 }
 
-void heap_sort(int ran_num6[],int n)
+void heapify(int ran_num6[],int k,int n)
 {
-	for(i=(n/2);i>0;i--)
-	{	
-		heapify(ran_num6,i,n);
-	}
-	for(i=n;i>1;i--)
-	{
-		temp=ran_num6[i];
-		ran_num6[i]=ran_num6[0];
-		ran_num6[0]=temp;
-		heapify(ran_num6,1,i-1);
-	}
-}
-
-void heapify(int ran_num6[],int i,int n)
-{
-	int left=(2*i)+1; int right=(2*i)+2;
+	int left=(2*k)+1; int right=(2*k)+2;
 	int smaller;
 	if(right<=n)//i가 두 자식을 가지는 경우
 	{
@@ -156,18 +141,32 @@ void heapify(int ran_num6[],int i,int n)
 	else if(left<=n)//i의 왼쪽 자식만 있는 경우
 		smaller=left;
 	else return;//temp3[i]가 리프 노드임. 리턴하고 끝남.
-
-	if(ran_num6[smaller]<ran_num6[i])
+	
+	if(ran_num6[smaller]<ran_num6[k])
 	{
-		temp=ran_num6[i];
-		ran_num6[i]=ran_num6[smaller];
+		temp=ran_num6[k];
+		ran_num6[k]=ran_num6[smaller];
 		ran_num6[smaller]=temp;
 		heapify(ran_num6,smaller,n);
 	}
+
 }
 
+void heap_sort(int ran_num6[],int n)
+{
+	for(i=(n-1)/2;i>=0;i--)
+	{	
+		heapify(ran_num6,i,n);
+	}//힙 만들어주기
 
-
+	for(i=n;i>=1;i--)
+	{
+		temp=ran_num6[i];
+		ran_num6[i]=ran_num6[0];
+		ran_num6[0]=temp;//루트노드하고 리프 노드 위치 바꾸기
+		heapify(ran_num6,0,i-1);
+	}
+}
 
 void print_array(int array[])//정렬이 잘 되었다고 확인하는 용도
 {
