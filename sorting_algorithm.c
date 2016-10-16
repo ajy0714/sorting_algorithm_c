@@ -127,17 +127,46 @@ int partition(int ran_num5[],int p,int r)
 	return i+1;
 }
 
-void heap_sort(int ran_num6[],n)
+void heap_sort(int ran_num6[],int n)
 {
+	for(i=(n/2);i>0;i--)
+	{	
+		heapify(ran_num6,i,n);
+	}
+	for(i=n;i>1;i--)
+	{
+		temp=ran_num6[i];
+		ran_num6[i]=ran_num6[0];
+		ran_num6[0]=temp;
+		heapify(ran_num6,1,i-1);
+	}
 }
 
-void buid_heap(int ran_num[],n)
+void heapify(int ran_num6[],int i,int n)
 {
+	int left=(2*i)+1; int right=(2*i)+2;
+	int smaller;
+	if(right<=n)//i가 두 자식을 가지는 경우
+	{
+		if(ran_num6[left]<ran_num6[right])
+			smaller=left;
+		else
+			smaller=right;
+	}
+	else if(left<=n)//i의 왼쪽 자식만 있는 경우
+		smaller=left;
+	else return;//temp3[i]가 리프 노드임. 리턴하고 끝남.
+
+	if(ran_num6[smaller]<ran_num6[i])
+	{
+		temp=ran_num6[i];
+		ran_num6[i]=ran_num6[smaller];
+		ran_num6[smaller]=temp;
+		heapify(ran_num6,smaller,n);
+	}
 }
 
-void heapify()
-{
-}
+
 
 
 void print_array(int array[])//정렬이 잘 되었다고 확인하는 용도
@@ -206,14 +235,14 @@ int main(void)
 	printf("\n퀵  정렬 : ");	print_array(ran_num5);
 	printf("소요시간 : %lf",(double)end-start);
 	free(ran_num5);
-	
+
 
 	int *ran_num6=(int*)malloc(sizeof(int)*num);
 	memcpy(ran_num6,ran_num,sizeof(ran_num)*num);
 	start=clock();
 	heap_sort(ran_num6,num-1);//힙 정렬
 	end=clock();
-	printf("\n힙   정렬 : ");	print_array(ran_num6);
+	printf("\n힙  정렬 : ");	print_array(ran_num6);
 	printf("소요시간 : %lf",(double)end-start);
 	free(ran_num6);
 
