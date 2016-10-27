@@ -6,7 +6,7 @@
 int num=0, cursor=0;
 int i, j, n;
 int temp=NULL;
-const int ITEMSIZE = 1000;
+//const int ITEMSIZE = 1000;
 clock_t start, end;
 
 
@@ -62,15 +62,15 @@ void insertion_sort(int ran_num3[],int num)
 	}
 }
 
-void merge_sort(int ran_num4[], int p,int r)
+void merge_sort(int ran_num4[], int p,int r)//왼쪽으로 끝까지 쪼갠 다음에 바로 상위 단계에 남아있는 나머지 부분을 쪼갠 후, 합치고 다시 그 동작을 반복하는 것.(왼쪽, 오른쪽 쪼개고 합치고 그 값을 오른쪽 쪼갠거와 다시 합치고...를 반복
 {
 	int q;
 	if(p<r)
 	{
 		q=(p+r)/2;
-		merge_sort(ran_num4,p,q);
-		merge_sort(ran_num4,q+1,r);
-		merge(ran_num4,p,q,r);
+		merge_sort(ran_num4,p,q);//왼쪽 쪼개기
+		merge_sort(ran_num4,q+1,r);//오른쪽 쪼개기
+		merge(ran_num4,p,q,r);//쪼갠걸 합치기
 	}
 }
 
@@ -87,9 +87,9 @@ void merge(int ran_num4[],int p,int q,int r)
 			temp2[k++]=ran_num4[j++];
 	}
 
-	while(j<=r)
+	while(j<=r)//오른쪽이 남아있는 경우
 		temp2[k++]=ran_num4[j++];
-	while(i<=q)
+	while(i<=q)//왼쪽이 남아있는 경우
 		temp2[k++]=ran_num4[i++];
 
 	i=p;k=0;
@@ -141,8 +141,8 @@ void heapify(int ran_num6[],int k,int n)
 	else if(left<=n)//i의 왼쪽 자식만 있는 경우
 		smaller=left;
 	else return;//temp3[i]가 리프 노드임. 리턴하고 끝남.
-	
-	if(ran_num6[smaller]<ran_num6[k])
+
+	if(ran_num6[smaller]<ran_num6[k])//루트 노드와 smaller 노드를 비교해서 smaller가 더 작으면 루트 노드와 위치 바꾸고, 바꾼 그 위치(smaller)에서 다시 힙 정렬을 실행함.
 	{
 		temp=ran_num6[k];
 		ran_num6[k]=ran_num6[smaller];
@@ -188,7 +188,6 @@ int main(void)
 		ran_num[i]=rand()%1000 + 0;
 		printf("%d ",ran_num[i]);
 	}//0부터 999까지 랜덤 정수를 ran_num에 대입 및 제대로 들어갔는지 확인출력
-
 
 	int *ran_num1=(int*)malloc(sizeof(int)*num);
 	memcpy(ran_num1,ran_num,sizeof(ran_num)*num);
